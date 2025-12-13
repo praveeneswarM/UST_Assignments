@@ -38,6 +38,9 @@ Problem Statement 2
 		chmod u+rw Report.txt
 		chmod g+r Report.txt
 		chmod o= Report.txt
+
+	- Checking Permissions
+		ls -l
 		
 Problem Statement 3
 	- Creating Simple Calculator
