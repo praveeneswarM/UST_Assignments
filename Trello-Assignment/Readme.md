@@ -4,3 +4,6 @@
 
 ### Board Image
 ![Trello Dashboard](./Images/Dashboard-Trello.png)
+
+### Story Image
+![Story Image](./Images/Story-Image-Trello.png)
