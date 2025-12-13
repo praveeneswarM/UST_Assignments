@@ -1,0 +1,63 @@
+Problem Statement 1:
+	- Created student_records folder
+		mkdir student_records 
+		cd student_records
+
+	- Created stud1.txt,stud2.txt,stud3.txt
+		touch stud{1..3}.txt 
+
+	- Added Content to stud1.txt
+		cat > stud1.txt
+		id,name,mark
+		1,Praveen,90
+		2,Abhi,92
+		3,Ashwin,93
+	
+	- Copying same content to stud2.txt and stud3.txt
+		cp stud1.txt stud2.txt
+		cp stud1.txt stud2.txt
+	
+	- Displaying contents
+		cat stud1.txt
+		cat stud2.txt
+		cat stud3.txt
+	
+	- Appending contents
+		cat >> stud1.txt
+		4,Ravi,89
+		5,Ram,90
+
+Problem Statement 2
+	- Creating File Report.txt
+		touch Report.txt
+	
+	- Giving Permissions Owner-rw, Group-r, Others-no permission
+		chmod 650 Report.txt
+	
+	- Giving Permissions Owner-rw, Group-r, Others-no permission(Symbols)
+		chmod u+rw Report.txt
+		chmod g+r Report.txt
+		chmod o= Report.txt
+		
+Problem Statement 3
+	- Creating Simple Calculator
+		echo "Enter Number 1"
+		read num1
+		echo "Enter Number 2"
+		read num2
+		echo "Enter Operator (+,-,*,/)"
+		read opr
+
+		if [ "$opr" = "+" ]; then
+       			 echo "Result $((num1+num2))"
+		elif [ "$opr" = "-" ]; then
+        		 echo "Result $((num1-num2))"
+		elif [ "$opr" = "*" ]; then
+        		 echo "Result $((num1*num2))"
+		elif [ "$opr" = "/" ]; then
+        		 echo "Result $((num1/num2))"
+		fi
+
+
+		
+
