@@ -1,6 +1,6 @@
 # Unix-Assignments
 
-### All Commands are documented in ![ShellCommands](./ShellCommands.txt)
+### All Commands are documented in (./ShellCommands.txt)
 
 ### Create student_records
   ![student_records](./Images/ProblemStatement-1.png)
