@@ -1,7 +1,7 @@
 ## This is a Git Assignment to create a Git Repository Named Student_Management_System
 URL(https://github.com/praveeneswarM/Student_Management_System-UST_Assignment)
 
-GitBash Commands are documented in [GitBash.txt]('/GitBash.txt')
+GitBash Commands are documented in [GitBash.txt]('GitBash.txt')
 
   # Create Student_Management_System in local
   ![Git_1]('../Images/Git_1.png')
