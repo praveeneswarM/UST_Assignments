@@ -3,7 +3,6 @@ package classobject;
 public class Book {
     String title;
     String author;
-
     Book() {
         title = "Java Basics";
         author = "James";
