@@ -20,5 +20,4 @@ public class Area {
 		a.area(3,5);
 		a.area(5.2);
 	}
-
 }
