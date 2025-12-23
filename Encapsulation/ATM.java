@@ -34,7 +34,6 @@ public class ATM {
 			System.out.println("WithDraw successful");
 		}
 	}
-	
 	public static void main(String[] args) {
 		
 		ATM a=new ATM();
