@@ -1,0 +1,45 @@
+MySQL Assignment:
+
+1) select pst.policy_type_id,rpt.policy_type_name,pst.description from policy_sub_types pst join ref_policy_types rpt on pst.policy_type_code=rpt.policy_type_code where rpt.policy_type_name='car';
+
+2) select pst.policy_type_code,count(up.policy_no) as No_of_Policies from user_policies up join policy_sub_types pst on up.policy_type_id=pst.policy_type_id group by pst.policy_type_code;
+
+3) select u.user_id,u.firstname,u.lastname,u.email,u.mobileno from user_details u join address_details a on u.address_id = a.address_id where a.city='chennai';
+
+4) select u.user_id,concat(u.firstname,' ',u.lastname)as User_Name,u.email,u.mobileno from user_details u join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join ref_policy_types rpt on pst.policy_type_code=rpt.policy_type_code where rpt.policy_type_name='car';
+
+5)select u.user_id,u.firstname,u.lastname from user_details u join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join ref_policy_types rpt on pst.policy_type_code=rpt.policy_type_code where rpt.policy_type_name='car' and u.user_id not in(select u1.user_id from user_policies u1 join policy_sub_types pt on u1.policy_type_id=pt.policy_type_id join ref_policy_types rt on pt.policy_type_code=rt.policy_type_code where rt.policy_type_name = 'home');
+
+6) select rst.policy_type_code, rst.policy_type_name from ref_policy_types rst join policy_sub_types pst on rst.policy_type_code = pst.policy_type_code join user_policies up on up.policy_type_id = pst.policy_type_id group by rst.policy_type_code, rst.policy_type_name order by count(up.policy_no) desc limit 1;
+
+7) select u.user_id,u.firstname,u.lastname,a.city,a.state from user_details u join address_details a on u.address_id=a.address_id where a.city like '%bad';
+
+8)  select u.user_id,u.firstname,u.lastname,up.policy_no,up.date_registered from user_details u join user_policies up on u.user_id=up.user_id where up.date_registered < '2012-05-01';
+
+9) select u.user_id,u.firstname,u.lastname from user_details u join user_policies up on u.user_id=up.user_id group by u.user_id,u.firstname,u.lastname having count(up.policy_no)>1;
+
+10) select rpt.policy_type_code,rpt.policy_type_name,pst.policy_type_id,up.user_id,up.policy_no from user_policies up join policy_sub_types pst on up.policy_type_id=pst.policy_type_id join ref_policy_types rpt on rpt.policy_type_code=pst.policy_type_code join policy_payments pp on pp.policy_no=up.policy_no where month(date_add(pp.dateofpayment,interval pst.maturityperiod year))=8 and year(date_add(pp.dateofpayment,interval pst.maturityperiod year))=2013;
+
+11)select rpt.policy_type_code,rpt.policy_type_name,pst.policy_type_id from policy_sub_types pst join ref_policy_types rpt on rpt.policy_type_code=pst.policy_type_code join user_policies up on up.policy_type_id=pst.policy_type_id join policy_payments pp on pp.policy_no=up.policy_no group by rpt.policy_type_code,pst.policy_type_id,pst.maturityamount having pst.maturityamount=2*sum(pp.amount);
+
+12) select user_id,sum(amount) as total_amount from policy_payments group by user_id;
+
+13)select user_id,policy_no,sum(amount) as total_amount from policy_payments group by user_id,policy_no;
+
+14)select up.user_id,up.policy_no,(pst.maturityamount-sum(pp.amount)) as balance_amount from user_policies up join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join policy_payments pp on pp.policy_no=up.policy_no group by up.user_id,up.policy_no,pst.maturityamount;
+
+15) select up.user_id,up.policy_no,(pst.maturityperiod-count(distinct year(pp.dateofpayment))) as balance_years from user_policies up join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join policy_payments pp on pp.policy_no=up.policy_no where pst.maturityperiod is not null group by up.user_id,up.policy_no,pst.maturityperiod;
+
+16) select u.user_id,u.firstname,u.lastname from user_details u join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join ref_policy_types rpt on rpt.policy_type_code=pst.policy_type_code where rpt.policy_type_name in ('car','home','life') group by u.user_id,u.firstname,u.lastname having count(distinct rpt.policy_type_name)=3;
+
+17) select rpt.policy_type_code,sum(pp.amount) as total_amount from ref_policy_types rpt join policy_sub_types pst on rpt.policy_type_code=pst.policy_type_code join user_policies up on up.policy_type_id=pst.policy_type_id join policy_payments pp on pp.policy_no=up.policy_no group by rpt.policy_type_code;
+
+18) select u.user_id,concat(u.firstname,' ',u.lastname) as user_name,pst.policy_type_code,pst.policy_type_id from user_details u join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id where (up.user_id,pst.policy_type_code) in (select up2.user_id,pst2.policy_type_code from user_policies up2 join policy_sub_types pst2 on pst2.policy_type_id=up2.policy_type_id group by up2.user_id,pst2.policy_type_code having count(distinct pst2.policy_type_id)>1);
+
+
+19) select rpt.policy_type_code,rpt.policy_type_name from ref_policy_types rpt join policy_sub_types pst on rpt.policy_type_code=pst.policy_type_code join user_policies up on up.policy_type_id=pst.policy_type_id group by rpt.policy_type_code,rpt.policy_type_name order by count(up.policy_no) asc limit 1;
+
+20) select u.user_id,concat(u.firstname,' ',u.lastname) as user_name,a.addressline1,u.mobileno,pst.policy_type_code,pst.policy_type_id,rpt.policy_type_name from user_details u join address_details a on u.address_id=a.address_id join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join ref_policy_types rpt on rpt.policy_type_code=pst.policy_type_code join policy_payments pp on pp.policy_no=up.policy_no group by u.user_id,up.policy_no,pst.maturityamount having sum(pp.amount)>=pst.maturityamount;
+
+
+21) select u.user_id,concat(u.firstname,' ',u.lastname) as user_name,a.addressline1,u.mobileno,pst.policy_type_code,pst.policy_type_id,rpt.policy_type_name,up.date_registered from user_details u join address_details a on u.address_id=a.address_id join user_policies up on u.user_id=up.user_id join policy_sub_types pst on pst.policy_type_id=up.policy_type_id join ref_policy_types rpt on rpt.policy_type_code=pst.policy_type_code order by up.date_registered desc limit 2;
